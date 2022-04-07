@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -9,7 +10,7 @@ import java.io.*;
 
 public class HelloController {
     @FXML
-    private TableView tabletka;
+    private TableView<stroka> tabletka;
     @FXML
     private TextField fileName;
 
@@ -44,6 +45,8 @@ public class HelloController {
                 System.out.println(line);
                 j = Integer.toString(i);
                 tabletka.getItems().add(i, new stroka(j,line));
+                ObservableList<stroka> data = tabletka.getItems(); // получаем данные
+                data.add(new stroka(j, line)); // добавляем строку
                 // считываем остальные строки в цикле
                 line = reader.readLine();
                 i++;
