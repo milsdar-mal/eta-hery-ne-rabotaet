@@ -15,44 +15,38 @@ public class HelloController {
     private TextField fileName;
 
     public static class stroka {
-        private final SimpleStringProperty id;
-        private final SimpleStringProperty value;
-
-        private stroka(String fName, String lName) {
-            this.id = new SimpleStringProperty(fName);
-            this.value = new SimpleStringProperty(lName);
+        public String a;
+        public String b;
+        private stroka(String a, String b) {
+            this.a = a;
+            this.b = b;
         }
-
-        public stroka(SimpleStringProperty id, SimpleStringProperty value) {
-            this.id = id;
-            this.value = value;
-        }
+        public String getA() {return this.a;}
+        public String getB() {return this.b;}
     }
+
     @FXML
     protected void Zapolnenie() {
-        //ArrayList<String> arrayList = new ArrayList<>();
         try {
             File file = new File(fileName.getText());
-            //создаем объект FileReader для объекта File
             FileReader fr = new FileReader(file);
-            //создаем BufferedReader с существующего FileReader для построчного считывания
             BufferedReader reader = new BufferedReader(fr);
-            // считаем сначала первую строку
             String line = reader.readLine();
             int i = 0;
-            String j = "0";
+            String j;
             while (line != null) {
-                System.out.println(line);
                 j = Integer.toString(i);
                 tabletka.getItems().add(i, new stroka(j,line));
-                ObservableList<stroka> data = tabletka.getItems(); // получаем данные
-                data.add(new stroka(j, line)); // добавляем строку
-                // считываем остальные строки в цикле
                 line = reader.readLine();
                 i++;
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    protected void Ochishenie() {
+        tabletka.getItems().clear();
     }
 }
