@@ -4,6 +4,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 import java.io.*;
@@ -16,13 +17,13 @@ public class HelloController {
 
     public static class stroka {
         public String a;
-        public String b;
+        public TextArea b = new TextArea();
         private stroka(String a, String b) {
             this.a = a;
-            this.b = b;
+            this.b.setText(b);
         }
         public String getA() {return this.a;}
-        public String getB() {return this.b;}
+        public TextArea getB() {return this.b;}
     }
 
     @FXML
